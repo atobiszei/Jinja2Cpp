@@ -49,6 +49,7 @@ FetchContent_Declare(
 )
 #    GIT_TAG f9d53419e912910fd8fa57d5705fa41425428c35 - latest but broken revision
 FetchContent_MakeAvailable(rapidjson)
+add_subdirectory(thirdparty/json/rapid EXCLUDE_FROM_ALL)
 find_package(RapidJSON REQUIRED)
 add_library(RapidJson INTERFACE)
 target_include_directories(RapidJson
