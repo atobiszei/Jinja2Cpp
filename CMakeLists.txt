@@ -24,6 +24,7 @@ set(JINJA2CPP_WITH_JSON_BINDINGS boost CACHE STRING "Build with json support(boo
 set_property(CACHE JINJA2CPP_WITH_JSON_BINDINGS PROPERTY STRINGS ${JINJA2CPP_WITH_JSON_BINDINGS})
 set (JINJA2CPP_DEPS_MODE "internal" CACHE STRING "Jinja2Cpp dependency management mode (internal | external | external-boost | conan-build). See documentation for details. 'interal' is default.")
 option(JINJA2CPP_BUILD_TESTS "Build Jinja2Cpp unit tests" ${JINJA2CPP_IS_MAIN_PROJECT})
+option(JINJA2CPP_BAZEL_BUILD "Build Jinja2Cpp bazel specific build path for cmake" OFF)
 option(JINJA2CPP_STRICT_WARNINGS "Enable additional warnings and treat them as errors" ON)
 option(JINJA2CPP_BUILD_SHARED "Build shared linkage version of Jinja2Cpp" OFF)
 option(JINJA2CPP_PIC "Control -fPIC option for library build" OFF)

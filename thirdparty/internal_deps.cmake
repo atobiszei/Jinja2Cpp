@@ -48,8 +48,13 @@ FetchContent_Declare(
     URL_HASH SHA256=d0c9e52823d493206eb721d38cb3a669ca0212360862bd15a3c2f7d35ea7c6f7
 )
 #    GIT_TAG f9d53419e912910fd8fa57d5705fa41425428c35 - latest but broken revision
-FetchContent_MakeAvailable(rapidjson)
-add_subdirectory(thirdparty/json/rapid EXCLUDE_FROM_ALL)
+if (JINJA2CPP_BAZEL_BUILD)
+    add_subdirectory(thirdparty/json/rapid EXCLUDE_FROM_ALL)
+else()
+    FetchContent_MakeAvailable(rapidjson)
+endif()
+#unset(JINJA2CPP_BAZEL_BUILD CACHE) The unset option is available since cmake v3.0.2
+
 find_package(RapidJSON REQUIRED)
 add_library(RapidJson INTERFACE)
 target_include_directories(RapidJson
