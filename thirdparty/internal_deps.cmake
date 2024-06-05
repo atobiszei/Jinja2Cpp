@@ -48,21 +48,40 @@ set (RAPIDJSON_ENABLE_INSTRUMENTATION_OPT OFF CACHE BOOL "" FORCE)
 #    rapidjson
 #    URL https://github.com/Tencent/rapidjson/archive/973dc9c06dcd3d035ebd039cfb9ea457721ec213.tar.gz
 #    URL_HASH SHA256=d0c9e52823d493206eb721d38cb3a669ca0212360862bd15a3c2f7d35ea7c6f7
-#)
-FetchContent_Declare(rapidsjon
-    GIT_REPOSITORY https://github.com/Tencent/rapidjson.git
-    GIT_TAG f54b0e47a08782a6131cc3d60f94d038fa6e0a51
-    GIT_SUBMODULES_RECURSE ON)
-FetchContent_GetProperties(rapidsjon)
-FetchContent_MakeAvailable(rapidsjon)
-#    GIT_TAG f9d53419e912910fd8fa57d5705fa41425428c35 - latest but broken revision
-find_package(RapidJSON REQUIRED)
+#)347862e61feb339ddcc8192a27e74a8ecd0e50a6
+
+
+
+
+update_submodule(json/rapid)
+set (RAPIDJSON_BUILD_DOC OFF CACHE BOOL "" FORCE)
+set (RAPIDJSON_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set (RAPIDJSON_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set (RAPIDJSON_BUILD_THIRDPARTY_GTEST OFF CACHE BOOL "" FORCE)
+set (RAPIDJSON_ENABLE_INSTRUMENTATION_OPT OFF CACHE BOOL "" FORCE)
+add_subdirectory(thirdparty/json/rapid EXCLUDE_FROM_ALL)
+find_package(RapidJSON)
 add_library(RapidJson INTERFACE)
 target_include_directories(RapidJson
     INTERFACE
         $<BUILD_INTERFACE:${RapidJSON_INCLUDE_DIR}>
         $<INSTALL_INTERFACE:include>
-)
+    )
+
+#FetchContent_Declare(rapidsjon
+#    GIT_REPOSITORY https://github.com/Tencent/rapidjson.git
+#    GIT_TAG f54b0e47a08782a6131cc3d60f94d038fa6e0a51
+#    GIT_SUBMODULES_RECURSE ON)
+#FetchContent_GetProperties(rapidsjon)
+#FetchContent_MakeAvailable(rapidsjon)
+##    GIT_TAG f9d53419e912910fd8fa57d5705fa41425428c35 - latest but broken revision
+#find_package(RapidJSON REQUIRED)
+#add_library(RapidJson INTERFACE)
+#target_include_directories(RapidJson
+#    INTERFACE
+#        $<BUILD_INTERFACE:${RapidJSON_INCLUDE_DIR}>
+#        $<INSTALL_INTERFACE:include>
+#)
 if (JINJA2CPP_BUILD_TESTS)
     set (JSON_BuildTests OFF CACHE BOOL "" FORCE)
     set (JSON_Install OFF CACHE BOOL "" FORCE)
