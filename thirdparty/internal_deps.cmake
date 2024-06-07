@@ -49,8 +49,8 @@ FetchContent_Declare(
 )
 #    GIT_TAG f9d53419e912910fd8fa57d5705fa41425428c35 - latest but broken revision
 if (JINJA2CPP_BAZEL_BUILD)
-    add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/thirdparty/json/rapid EXCLUDE_FROM_ALL)
-    set (RapidJSON_DIR thirdparty/json/rapid CACHE PATH "" FORCE)
+    add_subdirectory(json/rapid EXCLUDE_FROM_ALL)
+    set (RapidJSON_DIR json/rapid CACHE PATH "" FORCE)
 else()
     FetchContent_MakeAvailable(rapidjson)
 endif()
